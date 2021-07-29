@@ -1,8 +1,7 @@
 const http = require("http");
 const mariadb = require("mariadb");
 const url = require("url");
-const hostname  = '127.0.0.1';
-const port = '4004';
+
 
 /*const pool = mariadb.createPool({
     host: "db2019.if.unismuh.ac.id",
@@ -28,7 +27,7 @@ const mahasiswaFindAll = async () => {
     
     try{
         const conn = await getConnect();
-        const rows = await conn.query(`SELECT * FROM mahasiswa LIMIT 5`);
+        const rows = await conn.query(`SELECT * FROM mahasiswa LIMIT 20`);
        
         return rows;
 
@@ -95,22 +94,7 @@ const server = http.createServer(async(request, response) => {
         response.statusCode = 200;
         response.setHeader("Content-Type", "Text/html");
 
-        //response.write(`\nNIM : ${parsedURL.query.nim}<br>`);
-        //response.write(`\nNIM : ${mahasiswafind.nim}<br>`);
-        //response.write(`\nNama : ${mahasiswafind.nama}<br>`);
-        //response.write(`\nEmail : ${mahasiswafind.email_mahasiswa}<br>`);
-        //response.write(`\nNama : <img src="https://simak.unismuh.ac.id/upload/mahasiswa/${parsedURL.query.nim}.jpg"><br>`);
-        /*mahasiswa.map((elemen) => {
-            response.statusCode = 200;
-            
-            response.write(`\nNIM : ${elemen.nama}<br>`);
-            response.write(`\nProvinsi : ${elemen.provinsi}<br>`);
-            response.write(`\nEmail Mahasiswa : ${elemen.email_mahasiswa}<br>`)
-        response.end();
-    });*/
-
-
-    /////////////////////////
+       
     response.write(`
     <table width="745" border="1" cellspacing="0" cellpadding="5" align="center">
 <tr align="center" bgcolor="#6495ED">
@@ -167,7 +151,7 @@ const server = http.createServer(async(request, response) => {
 
 }); 
 
-server.listen(port, hostname, () =>{
-    console.log(`Server listen ${hostname} ${port}`);
+server.listen(4004, () =>{
+    console.log(`Server listen http://129.213.54.196:4004`);
     
 });
